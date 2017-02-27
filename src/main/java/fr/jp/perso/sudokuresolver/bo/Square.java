@@ -5,10 +5,7 @@ import java.util.List;
 
 public class Square {
    private int value;
-   private List<Integer> possibleValues = new ArrayList<Integer>(0);
-
-   public Square() {
-   }
+   private List<Integer> possibleValues = new ArrayList<>(0);
 
    public Square(int value) {
       validateValue(value);
@@ -19,13 +16,13 @@ public class Square {
       return value;
    }
 
-   public void setValue(int value) {
+   void setSquareValue(int value) {
       validateValue(value);
       this.value = value;
       possibleValues.clear();
    }
 
-   private void validateValue(int value) {
+   public static void validateValue(int value) {
       if (value < 0 || value > 9) {
          throw new RuntimeException("value has to be between 0 and 9. Received: " + value);
       }
@@ -47,7 +44,7 @@ public class Square {
       }
    }
 
-   public boolean isPossibleValue(Integer possibleValue) {
+   public boolean isPossibleValue(int possibleValue) {
       validateValue(possibleValue);
       return possibleValues.contains(possibleValue);
    }
@@ -62,5 +59,14 @@ public class Square {
          return " ";
       }
       return String.valueOf(value);
+   }
+
+   @Override
+   public boolean equals(Object obj) {
+      if (obj == null || !(obj instanceof Square)) {
+         return false;
+      }
+      Square squareObj = (Square) obj;
+      return this.value == squareObj.value;
    }
 }
