@@ -26,7 +26,6 @@ public class SudokuResolver {
       sudokuGrid.display();
 
       SudokuGridCalk calk = createCalk(sudokuGrid, 1);
-
       calk.display();
 
       /*for (int currentNumber = 1; currentNumber <= 9; currentNumber++) {
@@ -36,10 +35,11 @@ public class SudokuResolver {
    private static SudokuGridCalk createCalk(SudokuGrid sudokuGrid, int number) {
       SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createSudokuGridCalk();
 
+      sudokuGridCalk.setUnavailableOccupiedPositions(sudokuGrid);
+
       for (int subGridIndex = 0; subGridIndex <= 8; subGridIndex++) {
          SubGrid currentSubGrid = sudokuGrid.getSubGrid(subGridIndex);
          SubGridCalk currentSubGridCalk = sudokuGridCalk.getSubGrid(subGridIndex);
-         sudokuGridCalk.setUnavailableOccupiedPositions(currentSubGrid, subGridIndex);
          int squareIndex = currentSubGrid.getIndex(number);
          if (squareIndex != -1) {
             currentSubGridCalk.setEntireSubGridUnavailable();

@@ -10,14 +10,11 @@ public class SudokuGridCalk extends SudokuGrid<SubGridCalk> {
       super(subGrids);
    }
 
-   public void setUnavailableOccupiedPositions(SubGrid currentSubGrid, int subGridIndex) {
-      validateSubGridIndex(subGridIndex);
-      SubGrid calkSubGrid = subGrids.get(subGridIndex);
-      for (int squareIndex = 0; squareIndex <= 8; squareIndex++) {
-         Square square = currentSubGrid.getSquare(squareIndex);
-         if (!square.isUnknow()) {
-            calkSubGrid.setSquareValue(squareIndex, UNAVAILABLE_POSITION);
-         }
+   public void setUnavailableOccupiedPositions(SudokuGrid sudokuGrid) {
+      for (int subGridIndex = 0; subGridIndex <= 8; subGridIndex++) {
+         SubGrid currentSubGrid = sudokuGrid.getSubGrid(subGridIndex);
+         SubGridCalk currentSubGridCalk = subGrids.get(subGridIndex);
+         currentSubGridCalk.setUnavailableOccupiedPositions(currentSubGrid);
       }
    }
 

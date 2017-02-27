@@ -12,6 +12,15 @@ public class SubGridCalk extends SubGrid {
       }
    }
 
+   public void setUnavailableOccupiedPositions(SubGrid currentSubGrid) {
+      for (int squareIndex = 0; squareIndex <= 8; squareIndex++) {
+         Square square = currentSubGrid.getSquare(squareIndex);
+         if (!square.isUnknow() && getSquare(squareIndex).isUnknow()) {
+            setSquareValue(squareIndex, SudokuGridCalk.UNAVAILABLE_POSITION);
+         }
+      }
+   }
+
    @Override
    protected void validateValues(int[] values) {
       if (values == null) {
