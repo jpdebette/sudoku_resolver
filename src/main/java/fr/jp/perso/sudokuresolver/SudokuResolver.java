@@ -1,5 +1,6 @@
 package fr.jp.perso.sudokuresolver;
 
+import fr.jp.perso.sudokuresolver.bo.SubGrid;
 import fr.jp.perso.sudokuresolver.bo.SubGridCalk;
 import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;
@@ -69,18 +70,22 @@ public class SudokuResolver {
          if (availablePositions.size() == 1) {
             sudokuGrid.getSubGrid(subGridIndex).setSquareValue(availablePositions.get(0), currentNumber);
             sudokuGridChanged = true;
-         } else if (availablePositions.size() == 2) {
-            if (!sudokuGrid.getSubGrid(subGridIndex).getSquare(availablePositions.get(0)).isPossibleValue(currentNumber)) {
-               sudokuGrid.getSubGrid(subGridIndex).getSquare(availablePositions.get(0)).addPossibleValue(currentNumber);
-               sudokuGridChanged = true;
-            }
-            if (!sudokuGrid.getSubGrid(subGridIndex).getSquare(availablePositions.get(1)).isPossibleValue(currentNumber)) {
-               sudokuGrid.getSubGrid(subGridIndex).getSquare(availablePositions.get(1)).addPossibleValue(currentNumber);
-               sudokuGridChanged = true;
-            }
+         } else if (availablePositions.size() > 1) {
+            sudokuGridChanged |= setPossibleValue(sudokuGrid.getSubGrid(subGridIndex), availablePositions, currentNumber);
          }
       }
 
+      return sudokuGridChanged;
+   }
+
+   private boolean setPossibleValue(SubGrid subGrid, List<Integer> availablePositions, int currentNumber) {
+      boolean sudokuGridChanged = false;
+      for (Integer availablePosition : availablePositions) {
+         if (!subGrid.getSquare(availablePosition).isPossibleValue(currentNumber)) {
+            subGrid.getSquare(availablePosition).addPossibleValue(currentNumber);
+            sudokuGridChanged = true;
+         }
+      }
       return sudokuGridChanged;
    }
 

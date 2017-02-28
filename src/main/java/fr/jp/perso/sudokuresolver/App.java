@@ -7,7 +7,7 @@ public class App {
 
    public static void main(String[] args) {
       try {
-         SudokuGrid sudokuGrid = SudokuGridFactory.createEasySudokuGrid();
+         SudokuGrid sudokuGrid = SudokuGridFactory.createMediumSudokuGrid();
          SudokuResolver sudokuResolver = new SudokuResolver();
          sudokuResolver.resolve(sudokuGrid);
       } catch (Exception ex) {

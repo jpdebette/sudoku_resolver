@@ -28,6 +28,7 @@ public class NumberMaybePresentRule extends CalkRule {
 
    private void applyRulePerSubGrid(SudokuGridCalk sudokuGridCalk, SubGrid subGrid, int subGridIndex, int number) {
       List<Integer> squareIndexWithThisPossibleNumber = findPossiblePositionForNumber(subGrid, number);
+      cleanLinkedSquare(subGrid, squareIndexWithThisPossibleNumber);
       if (squareIndexWithThisPossibleNumber.size() == 2) {
          int index1 = squareIndexWithThisPossibleNumber.get(0);
          int index2 = squareIndexWithThisPossibleNumber.get(1);
@@ -37,6 +38,14 @@ public class NumberMaybePresentRule extends CalkRule {
             sudokuGridCalk.setColumnUnavailableForOtherSubGrid(subGridIndex, index1);
          }
       }
+   }
+
+   private void cleanLinkedSquare(SubGrid subGrid, List<Integer> squareIndexWithThisPossibleNumber) {
+      /*for (int squareIndex : subGrid.getAvailablePositions()) {
+         if (subGrid.getSquare(squareIndex).isPossibleValue(number)) {
+            squareIndexWithThisPossibleNumber.add(squareIndex);
+         }
+      }*/
    }
 
    private List<Integer> findPossiblePositionForNumber(SubGrid subGrid, int number) {
