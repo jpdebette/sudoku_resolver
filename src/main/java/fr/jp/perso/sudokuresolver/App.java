@@ -8,7 +8,8 @@ public class App {
    public static void main(String[] args) {
       try {
          SudokuGrid sudokuGrid = SudokuGridFactory.createSudokuGrid();
-         SudokuResolver.resolve(sudokuGrid);
+         SudokuResolver sudokuResolver = new SudokuResolver();
+         sudokuResolver.resolve(sudokuGrid);
       } catch (Exception ex) {
          System.out.println("Exception in the application: " + ex);
       }

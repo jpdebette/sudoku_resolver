@@ -1,14 +1,27 @@
 package fr.jp.perso.sudokuresolver;
 
-import fr.jp.perso.sudokuresolver.bo.SubGrid;
 import fr.jp.perso.sudokuresolver.bo.SubGridCalk;
 import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;
+import fr.jp.perso.sudokuresolver.bo.calkrules.CalkRule;
+import fr.jp.perso.sudokuresolver.bo.calkrules.NumberMaybePresentRule;
+import fr.jp.perso.sudokuresolver.bo.calkrules.NumberPresentRule;
+import fr.jp.perso.sudokuresolver.bo.calkrules.OccupiedPositionRule;
 import fr.jp.perso.sudokuresolver.utils.SudokuGridFactory;
 
 import java.util.List;
 
 public class SudokuResolver {
+
+   private CalkRule firstRule;
+
+   public SudokuResolver() {
+      NumberMaybePresentRule numberMaybePresentRule = new NumberMaybePresentRule(null);
+      NumberPresentRule numberPresentRule = new NumberPresentRule(numberMaybePresentRule);
+      OccupiedPositionRule occupiedPositionRule = new OccupiedPositionRule(numberPresentRule);
+
+      firstRule = occupiedPositionRule;
+   }
 
    /*
    List of rules, applies during creation of a calk for a number:
@@ -24,13 +37,14 @@ public class SudokuResolver {
 
     */
 
-   public static void resolve(SudokuGrid sudokuGrid) {
+   public void resolve(SudokuGrid sudokuGrid) {
       boolean sudokuGridChanged = false;
       int attemps = 0;
       sudokuGrid.display();
 
       do {
          sudokuGridChanged = tryAllNumber(sudokuGrid);
+         sudokuGrid.display();
          attemps++;
       } while (sudokuGridChanged || attemps > 100);
 
@@ -38,7 +52,7 @@ public class SudokuResolver {
       sudokuGrid.display();
    }
 
-   private static boolean tryAllNumber(SudokuGrid sudokuGrid) {
+   private boolean tryAllNumber(SudokuGrid sudokuGrid) {
       boolean sudokuGridChanged = false;
       for (int currentNumber = 1; currentNumber <= 9; currentNumber++) {
          sudokuGridChanged |= tryANumber(sudokuGrid, currentNumber);
@@ -47,7 +61,7 @@ public class SudokuResolver {
       return sudokuGridChanged;
    }
 
-   private static boolean tryANumber(SudokuGrid sudokuGrid, int currentNumber) {
+   private boolean tryANumber(SudokuGrid sudokuGrid, int currentNumber) {
       boolean sudokuGridChanged = false;
       SudokuGridCalk calk = createCalk(sudokuGrid, currentNumber);
 
@@ -72,21 +86,10 @@ public class SudokuResolver {
       return sudokuGridChanged;
    }
 
-   private static SudokuGridCalk createCalk(SudokuGrid sudokuGrid, int number) {
+   private SudokuGridCalk createCalk(SudokuGrid sudokuGrid, int number) {
       SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createSudokuGridCalk();
 
-      sudokuGridCalk.setUnavailableOccupiedPositions(sudokuGrid);
-
-      for (int subGridIndex = 0; subGridIndex <= 8; subGridIndex++) {
-         SubGrid currentSubGrid = sudokuGrid.getSubGrid(subGridIndex);
-         SubGridCalk currentSubGridCalk = sudokuGridCalk.getSubGrid(subGridIndex);
-         int squareIndex = currentSubGrid.getIndex(number);
-         if (squareIndex != -1) {
-            currentSubGridCalk.setEntireSubGridUnavailable();
-            sudokuGridCalk.setLineUnavailable(subGridIndex, squareIndex);
-            sudokuGridCalk.setColumnUnavailable(subGridIndex, squareIndex);
-         }
-      }
+      firstRule.applyRule(sudokuGrid, sudokuGridCalk, number);
 
       return sudokuGridCalk;
    }

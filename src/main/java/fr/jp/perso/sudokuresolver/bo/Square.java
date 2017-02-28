@@ -29,18 +29,13 @@ public class Square {
    }
 
    public void addPossibleValue(int possibleValue) {
+      if (!isUnknow()) {
+         throw new RuntimeException("Cannot add a possible value to a know square.");
+      }
       validateValue(possibleValue);
       boolean result = possibleValues.add(possibleValue);
       if (!result) {
          throw new RuntimeException("Cannot add possible value: " + possibleValue);
-      }
-   }
-
-   public void removePossibleValue(int possibleValue) {
-      validateValue(possibleValue);
-      boolean result = possibleValues.remove(new Integer(possibleValue));
-      if (!result) {
-         throw new RuntimeException("Cannot remove possible value: " + possibleValue);
       }
    }
 
@@ -56,9 +51,6 @@ public class Square {
    @Override
    public String toString() {
       if (value == 0) {
-         if (!possibleValues.isEmpty()) {
-            return "*";
-         }
          return " ";
       }
       return String.valueOf(value);

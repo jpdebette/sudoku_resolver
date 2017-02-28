@@ -74,29 +74,7 @@ public class SubGrid {
       }
    }
 
-   protected static int[] getLineIndexPerIndex(int squareIndex) {
-      validateSquareIndex(squareIndex);
-      if (squareIndex == 0 || squareIndex == 1 || squareIndex == 2) {
-         return new int[]{0, 1, 2};
-      } else if (squareIndex == 3 || squareIndex == 4 || squareIndex == 5) {
-         return new int[]{3, 4, 5};
-      } else {
-         return new int[]{6, 7, 8};
-      }
-   }
-
-   protected static int[] getColumnIndexPerIndex(int squareIndex) {
-      validateSquareIndex(squareIndex);
-      if (squareIndex == 0 || squareIndex == 3 || squareIndex == 6) {
-         return new int[]{0, 3, 6};
-      } else if (squareIndex == 1 || squareIndex == 4 || squareIndex == 7) {
-         return new int[]{1, 4, 7};
-      } else {
-         return new int[]{2, 5, 8};
-      }
-   }
-
-   protected static void validateSquareIndex(int squareIndex) {
+   public static void validateSquareIndex(int squareIndex) {
       if (squareIndex < 0 || squareIndex > 8) {
          throw new RuntimeException("index should be between 0 and 8. Received: " + squareIndex);
       }

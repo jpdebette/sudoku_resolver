@@ -24,31 +24,9 @@ public class SudokuGrid<T extends SubGrid> {
       }
    }
 
-   protected static void validateSubGridIndex(int index) {
+   public static void validateSubGridIndex(int index) {
       if (index < 0 || index > 8) {
          throw new RuntimeException("Index should be between 0 and 8. Received: " + index);
-      }
-   }
-
-   protected static int[] getLineIndexPerIndex(int subGridIndex) {
-      validateSubGridIndex(subGridIndex);
-      if (subGridIndex == 0 || subGridIndex == 1 || subGridIndex == 2) {
-         return new int[]{0, 1, 2};
-      } else if (subGridIndex == 3 || subGridIndex == 4 || subGridIndex == 5) {
-         return new int[]{3, 4, 5};
-      } else {
-         return new int[]{6, 7, 8};
-      }
-   }
-
-   protected static int[] getColumnIndexPerIndex(int subGridIndex) {
-      validateSubGridIndex(subGridIndex);
-      if (subGridIndex == 0 || subGridIndex == 3 || subGridIndex == 6) {
-         return new int[]{0, 3, 6};
-      } else if (subGridIndex == 1 || subGridIndex == 4 || subGridIndex == 7) {
-         return new int[]{1, 4, 7};
-      } else {
-         return new int[]{2, 5, 8};
       }
    }
 
