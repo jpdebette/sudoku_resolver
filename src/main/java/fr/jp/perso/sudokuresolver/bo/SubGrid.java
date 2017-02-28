@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class SubGrid {
-   private List<Square> squares = Arrays.asList(new Square[9]);
+   protected List<Square> squares = Arrays.asList(new Square[9]);
 
    public SubGrid(int[] values) {
       validateValues(values);

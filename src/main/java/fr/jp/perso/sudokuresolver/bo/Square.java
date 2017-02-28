@@ -1,11 +1,11 @@
 package fr.jp.perso.sudokuresolver.bo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Square {
    private int value;
-   private List<Integer> possibleValues = new ArrayList<>(0);
+   private Set<Integer> possibleValues = new HashSet<>(0);
 
    public Square(int value) {
       validateValue(value);
@@ -56,6 +56,9 @@ public class Square {
    @Override
    public String toString() {
       if (value == 0) {
+         if (!possibleValues.isEmpty()) {
+            return "*";
+         }
          return " ";
       }
       return String.valueOf(value);

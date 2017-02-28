@@ -6,6 +6,8 @@ import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;
 import fr.jp.perso.sudokuresolver.utils.SudokuGridFactory;
 
+import java.util.List;
+
 public class SudokuResolver {
 
    /*
@@ -23,13 +25,51 @@ public class SudokuResolver {
     */
 
    public static void resolve(SudokuGrid sudokuGrid) {
+      boolean sudokuGridChanged = false;
+      int attemps = 0;
       sudokuGrid.display();
 
-      SudokuGridCalk calk = createCalk(sudokuGrid, 1);
-      calk.display();
+      do {
+         sudokuGridChanged = tryAllNumber(sudokuGrid);
+         attemps++;
+      } while (sudokuGridChanged || attemps > 100);
 
-      /*for (int currentNumber = 1; currentNumber <= 9; currentNumber++) {
-      }*/
+      System.out.println(attemps + " attemps.");
+      sudokuGrid.display();
+   }
+
+   private static boolean tryAllNumber(SudokuGrid sudokuGrid) {
+      boolean sudokuGridChanged = false;
+      for (int currentNumber = 1; currentNumber <= 9; currentNumber++) {
+         sudokuGridChanged |= tryANumber(sudokuGrid, currentNumber);
+      }
+
+      return sudokuGridChanged;
+   }
+
+   private static boolean tryANumber(SudokuGrid sudokuGrid, int currentNumber) {
+      boolean sudokuGridChanged = false;
+      SudokuGridCalk calk = createCalk(sudokuGrid, currentNumber);
+
+      for (int subGridIndex = 0; subGridIndex <= 8; subGridIndex++) {
+         SubGridCalk subGridCalk = calk.getSubGrid(subGridIndex);
+         List<Integer> availablePositions = subGridCalk.getAvailablePositions();
+         if (availablePositions.size() == 1) {
+            sudokuGrid.getSubGrid(subGridIndex).setSquareValue(availablePositions.get(0), currentNumber);
+            sudokuGridChanged = true;
+         } else if (availablePositions.size() == 2) {
+            if (!sudokuGrid.getSubGrid(subGridIndex).getSquare(availablePositions.get(0)).isPossibleValue(currentNumber)) {
+               sudokuGrid.getSubGrid(subGridIndex).getSquare(availablePositions.get(0)).addPossibleValue(currentNumber);
+               sudokuGridChanged = true;
+            }
+            if (!sudokuGrid.getSubGrid(subGridIndex).getSquare(availablePositions.get(1)).isPossibleValue(currentNumber)) {
+               sudokuGrid.getSubGrid(subGridIndex).getSquare(availablePositions.get(1)).addPossibleValue(currentNumber);
+               sudokuGridChanged = true;
+            }
+         }
+      }
+
+      return sudokuGridChanged;
    }
 
    private static SudokuGridCalk createCalk(SudokuGrid sudokuGrid, int number) {
