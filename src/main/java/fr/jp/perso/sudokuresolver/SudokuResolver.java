@@ -40,16 +40,14 @@ public class SudokuResolver {
    public void resolve(SudokuGrid sudokuGrid) {
       boolean sudokuGridChanged = false;
       int attemps = 0;
-      sudokuGrid.display();
 
       do {
-         sudokuGridChanged = tryAllNumber(sudokuGrid);
          sudokuGrid.display();
+         sudokuGridChanged = tryAllNumber(sudokuGrid);
          attemps++;
       } while (sudokuGridChanged || attemps > 100);
 
       System.out.println(attemps + " attemps.");
-      sudokuGrid.display();
    }
 
    private boolean tryAllNumber(SudokuGrid sudokuGrid) {

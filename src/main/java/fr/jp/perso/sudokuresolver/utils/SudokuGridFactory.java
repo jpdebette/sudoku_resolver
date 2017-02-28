@@ -28,7 +28,25 @@ public class SudokuGridFactory {
       return new SudokuGridCalk(subGrids);
    }
 
-   public static SudokuGrid createSudokuGrid() {
+   public static SudokuGrid createEasySudokuGrid() {
+      List<SubGrid> subGrids = new ArrayList<>(9);
+
+      subGrids.add(new SubGrid(new int[]{2, 0, 0, 0, 0, 6, 0, 7, 4}));
+      subGrids.add(new SubGrid(new int[]{8, 0, 4, 0, 0, 0, 0, 0, 0}));
+      subGrids.add(new SubGrid(new int[]{0, 0, 6, 5, 0, 0, 9, 2, 0}));
+
+      subGrids.add(new SubGrid(new int[]{3, 0, 0, 0, 0, 0, 4, 0, 0}));
+      subGrids.add(new SubGrid(new int[]{0, 4, 0, 3, 0, 5, 0, 6, 0}));
+      subGrids.add(new SubGrid(new int[]{0, 0, 7, 0, 0, 0, 0, 0, 9}));
+
+      subGrids.add(new SubGrid(new int[]{0, 1, 9, 0, 0, 8, 5, 0, 0}));
+      subGrids.add(new SubGrid(new int[]{0, 0, 0, 0, 0, 0, 6, 0, 8}));
+      subGrids.add(new SubGrid(new int[]{7, 4, 0, 2, 0, 0, 0, 0, 1}));
+
+      return new SudokuGrid(subGrids);
+   }
+
+   public static SudokuGrid createMediumSudokuGrid() {
       List<SubGrid> subGrids = new ArrayList<>(9);
 
       subGrids.add(new SubGrid(new int[]{0, 6, 0, 0, 0, 0, 0, 2, 0}));
