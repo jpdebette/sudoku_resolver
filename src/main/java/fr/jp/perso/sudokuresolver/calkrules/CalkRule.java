@@ -1,4 +1,4 @@
-package fr.jp.perso.sudokuresolver.bo.calkrules;
+package fr.jp.perso.sudokuresolver.calkrules;
 
 import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;

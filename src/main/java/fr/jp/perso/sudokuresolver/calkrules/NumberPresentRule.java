@@ -1,4 +1,4 @@
-package fr.jp.perso.sudokuresolver.bo.calkrules;
+package fr.jp.perso.sudokuresolver.calkrules;
 
 import fr.jp.perso.sudokuresolver.bo.SubGrid;
 import fr.jp.perso.sudokuresolver.bo.SubGridCalk;
@@ -16,7 +16,7 @@ public class NumberPresentRule extends CalkRule {
       for (int subGridIndex = 0; subGridIndex <= 8; subGridIndex++) {
          SubGrid currentSubGrid = sudokuGrid.getSubGrid(subGridIndex);
          SubGridCalk currentSubGridCalk = sudokuGridCalk.getSubGrid(subGridIndex);
-         int squareIndex = currentSubGrid.getIndex(currentNumber);
+         int squareIndex = currentSubGrid.getIndexNumber(currentNumber);
          if (squareIndex != -1) {
             currentSubGridCalk.setEntireSubGridUnavailable();
             sudokuGridCalk.setLineUnavailable(subGridIndex, squareIndex);

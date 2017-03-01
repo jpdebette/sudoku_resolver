@@ -21,9 +21,8 @@ public class SudokuGridCalk extends SudokuGrid<SubGridCalk> {
    }
 
    public void setLineUnavailable(int subGridIndex, int squareIndex) {
-      validateSubGridIndex(subGridIndex);
-      int[] subGridsLine = SudokuIndexResolver.getSubGridLineIndexPerIndex(subGridIndex);
-      int[] squaresLine = SudokuIndexResolver.getSquareLineIndexPerIndex(squareIndex);
+      int[] subGridsLine = SudokuIndexResolver.getSubGridLineIndexesPerIndex(subGridIndex);
+      int[] squaresLine = SudokuIndexResolver.getSquareLineIndexesPerIndex(squareIndex);
       for (int subGridLineIndex : subGridsLine) {
          SubGrid calkSubGrid = subGrids.get(subGridLineIndex);
          for (int squareLineIndex : squaresLine) {
@@ -33,9 +32,8 @@ public class SudokuGridCalk extends SudokuGrid<SubGridCalk> {
    }
 
    public void setLineUnavailableForOtherSubGrid(int subGridIndex, int squareIndex) {
-      validateSubGridIndex(subGridIndex);
-      int[] subGridsLine = SudokuIndexResolver.getSubGridLineIndexPerIndex(subGridIndex);
-      int[] squaresLine = SudokuIndexResolver.getSquareLineIndexPerIndex(squareIndex);
+      int[] subGridsLine = SudokuIndexResolver.getSubGridLineIndexesPerIndex(subGridIndex);
+      int[] squaresLine = SudokuIndexResolver.getSquareLineIndexesPerIndex(squareIndex);
       for (int subGridLineIndex : subGridsLine) {
          if (subGridLineIndex != subGridIndex) {
             SubGrid calkSubGrid = subGrids.get(subGridLineIndex);
@@ -47,9 +45,8 @@ public class SudokuGridCalk extends SudokuGrid<SubGridCalk> {
    }
 
    public void setColumnUnavailable(int subGridIndex, int squareIndex) {
-      validateSubGridIndex(subGridIndex);
-      int[] subGridsColumn = SudokuIndexResolver.getSubGridColumnIndexPerIndex(subGridIndex);
-      int[] squaresColumn = SudokuIndexResolver.getSquareColumnIndexPerIndex(squareIndex);
+      int[] subGridsColumn = SudokuIndexResolver.getSubGridColumnIndexesPerIndex(subGridIndex);
+      int[] squaresColumn = SudokuIndexResolver.getSquareColumnIndexesPerIndex(squareIndex);
       for (int subGridColumnIndex : subGridsColumn) {
          SubGrid calkSubGrid = subGrids.get(subGridColumnIndex);
          for (int squareColumnIndex : squaresColumn) {
@@ -59,9 +56,8 @@ public class SudokuGridCalk extends SudokuGrid<SubGridCalk> {
    }
 
    public void setColumnUnavailableForOtherSubGrid(int subGridIndex, int squareIndex) {
-      validateSubGridIndex(subGridIndex);
-      int[] subGridsColumn = SudokuIndexResolver.getSubGridColumnIndexPerIndex(subGridIndex);
-      int[] squaresColumn = SudokuIndexResolver.getSquareColumnIndexPerIndex(squareIndex);
+      int[] subGridsColumn = SudokuIndexResolver.getSubGridColumnIndexesPerIndex(subGridIndex);
+      int[] squaresColumn = SudokuIndexResolver.getSquareColumnIndexesPerIndex(squareIndex);
       for (int subGridColumnIndex : subGridsColumn) {
          if (subGridColumnIndex != subGridIndex) {
             SubGrid calkSubGrid = subGrids.get(subGridColumnIndex);

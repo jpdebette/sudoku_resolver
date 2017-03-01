@@ -2,8 +2,8 @@ package fr.jp.perso.sudokuresolver.bo;
 
 public class SubGridCalk extends SubGrid {
 
-   public SubGridCalk(int[] values) {
-      super(values);
+   public SubGridCalk(int index, int[] values) {
+      super(index, values);
    }
 
    public void setEntireSubGridUnavailable() {
@@ -42,7 +42,6 @@ public class SubGridCalk extends SubGrid {
       if (value != SudokuGridCalk.UNAVAILABLE_POSITION) {
          throw new RuntimeException(String.format("Cannot set %s in calk.", value));
       }
-      validateSquareIndex(index);
-      getSquare(index).setSquareValue(value);
+      getSquare(index).setValue(value);
    }
 }

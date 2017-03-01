@@ -1,27 +1,28 @@
 package fr.jp.perso.sudokuresolver.utils;
 
-import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
-
 public class SudokuIndexResolver {
 
-   public static int[] getSubGridLineIndexPerIndex(int subGridIndex) {
-      return getLineIndexPerIndex(subGridIndex);
+   public static int[] getSubGridLineIndexesPerIndex(int subGridIndex) {
+      SudokuValidator.validateSubGridIndex(subGridIndex);
+      return getLineIndexesPerIndex(subGridIndex);
    }
 
-   public static int[] getSubGridColumnIndexPerIndex(int subGridIndex) {
+   public static int[] getSubGridColumnIndexesPerIndex(int subGridIndex) {
+      SudokuValidator.validateSubGridIndex(subGridIndex);
       return getColumnIndexPerIndex(subGridIndex);
    }
 
-   public static int[] getSquareLineIndexPerIndex(int squareIndex) {
-      return getLineIndexPerIndex(squareIndex);
+   public static int[] getSquareLineIndexesPerIndex(int squareIndex) {
+      SudokuValidator.validateSquareIndex(squareIndex);
+      return getLineIndexesPerIndex(squareIndex);
    }
 
-   public static int[] getSquareColumnIndexPerIndex(int squareIndex) {
+   public static int[] getSquareColumnIndexesPerIndex(int squareIndex) {
+      SudokuValidator.validateSquareIndex(squareIndex);
       return getColumnIndexPerIndex(squareIndex);
    }
 
-   private static int[] getLineIndexPerIndex(int subGridIndex) {
-      SudokuGrid.validateSubGridIndex(subGridIndex);
+   private static int[] getLineIndexesPerIndex(int subGridIndex) {
       if (subGridIndex == 0 || subGridIndex == 1 || subGridIndex == 2) {
          return new int[]{0, 1, 2};
       } else if (subGridIndex == 3 || subGridIndex == 4 || subGridIndex == 5) {
@@ -32,7 +33,6 @@ public class SudokuIndexResolver {
    }
 
    private static int[] getColumnIndexPerIndex(int subGridIndex) {
-      SudokuGrid.validateSubGridIndex(subGridIndex);
       if (subGridIndex == 0 || subGridIndex == 3 || subGridIndex == 6) {
          return new int[]{0, 3, 6};
       } else if (subGridIndex == 1 || subGridIndex == 4 || subGridIndex == 7) {

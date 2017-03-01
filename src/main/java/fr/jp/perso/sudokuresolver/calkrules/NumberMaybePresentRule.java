@@ -1,13 +1,12 @@
-package fr.jp.perso.sudokuresolver.bo.calkrules;
+package fr.jp.perso.sudokuresolver.calkrules;
 
 import fr.jp.perso.sudokuresolver.bo.SubGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;
 import fr.jp.perso.sudokuresolver.utils.SudokuIndexResolver;
+import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class NumberMaybePresentRule extends CalkRule {
 
@@ -41,11 +40,21 @@ public class NumberMaybePresentRule extends CalkRule {
    }
 
    private void cleanLinkedSquare(SubGrid subGrid, List<Integer> squareIndexWithThisPossibleNumber) {
-      /*for (int squareIndex : subGrid.getAvailablePositions()) {
-         if (subGrid.getSquare(squareIndex).isPossibleValue(number)) {
-            squareIndexWithThisPossibleNumber.add(squareIndex);
+      Map<Pair<Integer, Integer>, Integer> possibleDoubles = new HashMap<>();
+
+      for (int number = 1; number <= 8; number++) {
+         List<Integer> possiblePositions = subGrid.getPossiblePositions(number);
+         if (possiblePositions.size() == 2) {
+            Pair<Integer, Integer> pair = new Pair<>(possiblePositions.get(0), possiblePositions.get(1));
+            if (possibleDoubles.containsKey(pair)) {
+               squareIndexWithThisPossibleNumber.remove(possiblePositions.get(0));
+               squareIndexWithThisPossibleNumber.remove(possiblePositions.get(1));
+               possibleDoubles.remove(pair);
+            } else {
+               possibleDoubles.put(pair, number);
+            }
          }
-      }*/
+      }
    }
 
    private List<Integer> findPossiblePositionForNumber(SubGrid subGrid, int number) {
@@ -59,14 +68,14 @@ public class NumberMaybePresentRule extends CalkRule {
    }
 
    private boolean areOneTheSameLine(int index1, int index2) {
-      int[] squareLine1 = SudokuIndexResolver.getSquareLineIndexPerIndex(index1);
-      int[] squareLine2 = SudokuIndexResolver.getSquareLineIndexPerIndex(index2);
+      int[] squareLine1 = SudokuIndexResolver.getSquareLineIndexesPerIndex(index1);
+      int[] squareLine2 = SudokuIndexResolver.getSquareLineIndexesPerIndex(index2);
       return Arrays.equals(squareLine1, squareLine2);
    }
 
    private boolean areOneTheSameColumn(int index1, int index2) {
-      int[] squareColumn1 = SudokuIndexResolver.getSquareColumnIndexPerIndex(index1);
-      int[] squareColumn2 = SudokuIndexResolver.getSquareColumnIndexPerIndex(index2);
+      int[] squareColumn1 = SudokuIndexResolver.getSquareColumnIndexesPerIndex(index1);
+      int[] squareColumn2 = SudokuIndexResolver.getSquareColumnIndexesPerIndex(index2);
       return Arrays.equals(squareColumn1, squareColumn2);
    }
 }

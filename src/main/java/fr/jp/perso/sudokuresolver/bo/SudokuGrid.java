@@ -1,5 +1,8 @@
 package fr.jp.perso.sudokuresolver.bo;
 
+import fr.jp.perso.sudokuresolver.supervisor.StateListener;
+import fr.jp.perso.sudokuresolver.utils.SudokuValidator;
+
 import java.util.List;
 
 public class SudokuGrid<T extends SubGrid> {
@@ -11,7 +14,7 @@ public class SudokuGrid<T extends SubGrid> {
    }
 
    public T getSubGrid(int index) {
-      validateSubGridIndex(index);
+      SudokuValidator.validateSubGridIndex(index);
       return subGrids.get(index);
    }
 
@@ -24,9 +27,9 @@ public class SudokuGrid<T extends SubGrid> {
       }
    }
 
-   public static void validateSubGridIndex(int index) {
-      if (index < 0 || index > 8) {
-         throw new RuntimeException("Index should be between 0 and 8. Received: " + index);
+   public void initStateListener(StateListener stateListener) {
+      for (SubGrid subGrid : subGrids) {
+         subGrid.initStateListener(stateListener);
       }
    }
 

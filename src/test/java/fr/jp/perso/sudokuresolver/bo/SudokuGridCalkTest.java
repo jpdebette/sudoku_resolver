@@ -16,11 +16,11 @@ public class SudokuGridCalkTest {
       SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createSudokuGridCalk();
 
       sudokuGridCalk.setLineUnavailable(2, 4);
-      SubGridCalk emptySubGridCalk = new SubGridCalk(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0});
-      SubGridCalk firstLineUnavailableSubGridCalk = new SubGridCalk(new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0});
-      SubGridCalk secondLineUnavailableSubGridCalk = new SubGridCalk(new int[]{0, 0, 0, 8, 8, 8, 0, 0, 0});
-      SubGridCalk thirdLineUnavailableSubGridCalk = new SubGridCalk(new int[]{0, 0, 0, 0, 0, 0, 8, 8, 8});
-      SubGridCalk firstAndThirdLineUnavailableSubGridCalk = new SubGridCalk(new int[]{8, 8, 8, 0, 0, 0, 8, 8, 8});
+      SubGridCalk emptySubGridCalk = new SubGridCalk(0, new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0});
+      SubGridCalk firstLineUnavailableSubGridCalk = new SubGridCalk(0, new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0});
+      SubGridCalk secondLineUnavailableSubGridCalk = new SubGridCalk(0, new int[]{0, 0, 0, 8, 8, 8, 0, 0, 0});
+      SubGridCalk thirdLineUnavailableSubGridCalk = new SubGridCalk(0, new int[]{0, 0, 0, 0, 0, 0, 8, 8, 8});
+      SubGridCalk firstAndThirdLineUnavailableSubGridCalk = new SubGridCalk(0, new int[]{8, 8, 8, 0, 0, 0, 8, 8, 8});
       Assert.assertTrue(secondLineUnavailableSubGridCalk.equals(sudokuGridCalk.getSubGrid(0)));
       Assert.assertTrue(secondLineUnavailableSubGridCalk.equals(sudokuGridCalk.getSubGrid(1)));
       Assert.assertTrue(secondLineUnavailableSubGridCalk.equals(sudokuGridCalk.getSubGrid(2)));

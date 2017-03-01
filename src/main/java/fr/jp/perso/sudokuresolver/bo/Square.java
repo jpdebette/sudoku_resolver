@@ -1,5 +1,7 @@
 package fr.jp.perso.sudokuresolver.bo;
 
+import fr.jp.perso.sudokuresolver.utils.SudokuValidator;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,44 +9,45 @@ public class Square {
    private int value;
    private Set<Integer> possibleValues = new HashSet<>(0);
 
-   public Square(int value) {
-      validateValue(value);
-      this.value = value;
+   Square(int value) {
+      SudokuValidator.validateSquareValue(value);
+      setValue(value);
    }
 
    public int getValue() {
       return value;
    }
 
-   void setSquareValue(int value) {
-      validateValue(value);
+   void setValue(int value) {
+      SudokuValidator.validateSquareValue(value);
       this.value = value;
-      possibleValues.clear();
-   }
-
-   public static void validateValue(int value) {
-      if (value < 0 || value > 9) {
-         throw new RuntimeException("value has to be between 0 and 9. Received: " + value);
-      }
    }
 
    public void addPossibleValue(int possibleValue) {
       if (!isUnknow()) {
          throw new RuntimeException("Cannot add a possible value to a know square.");
       }
-      validateValue(possibleValue);
+      SudokuValidator.validateSquareValue(possibleValue);
       boolean result = possibleValues.add(possibleValue);
       if (!result) {
          throw new RuntimeException("Cannot add possible value: " + possibleValue);
       }
    }
 
+   public void removePossibleValue(int possibleValue) {
+      SudokuValidator.validateSquareValue(possibleValue);
+      boolean result = possibleValues.remove(possibleValue);
+      if (!result) {
+         throw new RuntimeException("Cannot remove possible value: " + possibleValue);
+      }
+   }
+
    public boolean isPossibleValue(int possibleValue) {
-      validateValue(possibleValue);
+      SudokuValidator.validateSquareValue(possibleValue);
       return possibleValues.contains(possibleValue);
    }
 
-   public boolean isUnknow() {
+   boolean isUnknow() {
       return value == 0;
    }
 
