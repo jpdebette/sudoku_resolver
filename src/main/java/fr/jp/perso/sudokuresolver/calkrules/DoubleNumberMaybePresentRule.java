@@ -15,13 +15,9 @@ public class DoubleNumberMaybePresentRule extends CalkRule {
    }
 
    @Override
-   public void applyRule(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int number) {
+   void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int number) {
       for (int subGridIndex = 0; subGridIndex <= 8; subGridIndex++) {
          applyRulePerSubGrid(sudokuGridCalk, sudokuGrid.getSubGrid(subGridIndex), subGridIndex, number);
-      }
-
-      if (nextRule != null) {
-         nextRule.applyRule(sudokuGrid, sudokuGridCalk, number);
       }
    }
 

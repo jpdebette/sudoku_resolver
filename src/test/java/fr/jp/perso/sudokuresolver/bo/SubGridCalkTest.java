@@ -9,41 +9,68 @@ public class SubGridCalkTest {
    @Test
    public void hasToSetUnavailableASubGrid() {
       SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createEmptySudokuGridCalk();
-      SubGridCalk emptySubGridCalk = new SubGridCalk(0, new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0});
-      SubGridCalk fullSubGridCalk = new SubGridCalk(0, new int[]{8, 8, 8, 8, 8, 8, 8, 8, 8});
 
       sudokuGridCalk.getSubGrid(0).setEntireSubGridUnavailable();
-
-      Assert.assertTrue(fullSubGridCalk.equals(sudokuGridCalk.getSubGrid(0)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(1)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(2)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(3)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(4)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(5)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(6)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(7)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(8)));
+      Assert.assertTrue(sudokuGridCalk.equals(createSudokuGridCalk1()));
 
       sudokuGridCalk.getSubGrid(4).setEntireSubGridUnavailable();
-      Assert.assertTrue(fullSubGridCalk.equals(sudokuGridCalk.getSubGrid(0)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(1)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(2)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(3)));
-      Assert.assertTrue(fullSubGridCalk.equals(sudokuGridCalk.getSubGrid(4)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(5)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(6)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(7)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(8)));
+      Assert.assertTrue(sudokuGridCalk.equals(createSudokuGridCalk2()));
 
       sudokuGridCalk.getSubGrid(8).setEntireSubGridUnavailable();
-      Assert.assertTrue(fullSubGridCalk.equals(sudokuGridCalk.getSubGrid(0)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(1)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(2)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(3)));
-      Assert.assertTrue(fullSubGridCalk.equals(sudokuGridCalk.getSubGrid(4)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(5)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(6)));
-      Assert.assertTrue(emptySubGridCalk.equals(sudokuGridCalk.getSubGrid(7)));
-      Assert.assertTrue(fullSubGridCalk.equals(sudokuGridCalk.getSubGrid(8)));
+      Assert.assertTrue(sudokuGridCalk.equals(createSudokuGridCalk3()));
+   }
+
+   private SudokuGridCalk createSudokuGridCalk1() {
+      int[][] subGrids = new int[9][];
+
+      subGrids[0] = new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0};
+      subGrids[1] = new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0};
+      subGrids[2] = new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0};
+
+      subGrids[3] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+      subGrids[4] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+      subGrids[5] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+      subGrids[6] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+      subGrids[7] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+      subGrids[8] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+      return SudokuGridFactory.createNewSudokuCalk(subGrids);
+   }
+
+   private SudokuGridCalk createSudokuGridCalk2() {
+      int[][] subGrids = new int[9][];
+
+      subGrids[0] = new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0};
+      subGrids[1] = new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0};
+      subGrids[2] = new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0};
+
+      subGrids[3] = new int[]{0, 0, 0, 8, 8, 8, 0, 0, 0};
+      subGrids[4] = new int[]{0, 0, 0, 8, 8, 8, 0, 0, 0};
+      subGrids[5] = new int[]{0, 0, 0, 8, 8, 8, 0, 0, 0};
+
+      subGrids[6] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+      subGrids[7] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+      subGrids[8] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+      return SudokuGridFactory.createNewSudokuCalk(subGrids);
+   }
+
+   private SudokuGridCalk createSudokuGridCalk3() {
+      int[][] subGrids = new int[9][];
+
+      subGrids[0] = new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0};
+      subGrids[1] = new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0};
+      subGrids[2] = new int[]{8, 8, 8, 0, 0, 0, 0, 0, 0};
+
+      subGrids[3] = new int[]{0, 0, 0, 8, 8, 8, 0, 0, 0};
+      subGrids[4] = new int[]{0, 0, 0, 8, 8, 8, 0, 0, 0};
+      subGrids[5] = new int[]{0, 0, 0, 8, 8, 8, 0, 0, 0};
+
+      subGrids[6] = new int[]{0, 0, 0, 0, 0, 0, 8, 8, 8};
+      subGrids[7] = new int[]{0, 0, 0, 0, 0, 0, 8, 8, 8};
+      subGrids[8] = new int[]{0, 0, 0, 0, 0, 0, 8, 8, 8};
+
+      return SudokuGridFactory.createNewSudokuCalk(subGrids);
    }
 }

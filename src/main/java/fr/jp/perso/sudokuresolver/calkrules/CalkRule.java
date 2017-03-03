@@ -11,5 +11,12 @@ public abstract class CalkRule {
       this.nextRule = nextRule;
    }
 
-   public abstract void applyRule(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber);
+   public void applyRule(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber) {
+      apply(sudokuGrid, sudokuGridCalk, currentNumber);
+      if (nextRule != null) {
+         nextRule.applyRule(sudokuGrid, sudokuGridCalk, currentNumber);
+      }
+   }
+
+   abstract void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber);
 }

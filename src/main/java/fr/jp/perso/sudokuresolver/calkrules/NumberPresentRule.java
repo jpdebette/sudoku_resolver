@@ -12,7 +12,7 @@ public class NumberPresentRule extends CalkRule {
    }
 
    @Override
-   public void applyRule(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber) {
+   public void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber) {
       for (int subGridIndex = 0; subGridIndex <= 8; subGridIndex++) {
          SubGrid currentSubGrid = sudokuGrid.getSubGrid(subGridIndex);
          SubGridCalk currentSubGridCalk = sudokuGridCalk.getSubGrid(subGridIndex);
@@ -22,10 +22,6 @@ public class NumberPresentRule extends CalkRule {
             sudokuGridCalk.setLineUnavailable(subGridIndex, squareIndex);
             sudokuGridCalk.setColumnUnavailable(subGridIndex, squareIndex);
          }
-      }
-
-      if (nextRule != null) {
-         nextRule.applyRule(sudokuGrid, sudokuGridCalk, currentNumber);
       }
    }
 }

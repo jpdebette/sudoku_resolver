@@ -10,11 +10,7 @@ public class OccupiedPositionRule extends CalkRule {
    }
 
    @Override
-   public void applyRule(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber) {
+   public void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber) {
       sudokuGridCalk.setUnavailableOccupiedPositions(sudokuGrid);
-
-      if (nextRule != null) {
-         nextRule.applyRule(sudokuGrid, sudokuGridCalk, currentNumber);
-      }
    }
 }
