@@ -7,13 +7,8 @@ import org.junit.Test;
 public class SudokuGridCalkTest {
 
    @Test
-   public void hasToSetUnavailableOccupiedPositions() {
-
-   }
-
-   @Test
    public void hasToSetUnavailableALine() {
-      SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createSudokuGridCalk();
+      SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createEmptySudokuGridCalk();
 
       sudokuGridCalk.setLineUnavailable(2, 4);
       SubGridCalk emptySubGridCalk = new SubGridCalk(0, new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0});

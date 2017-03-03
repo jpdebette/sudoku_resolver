@@ -8,9 +8,9 @@ import javafx.util.Pair;
 
 import java.util.*;
 
-public class NumberMaybePresentRule extends CalkRule {
+public class DoubleNumberMaybePresentRule extends CalkRule {
 
-   public NumberMaybePresentRule(CalkRule nextRule) {
+   public DoubleNumberMaybePresentRule(CalkRule nextRule) {
       super(nextRule);
    }
 
@@ -27,7 +27,7 @@ public class NumberMaybePresentRule extends CalkRule {
 
    private void applyRulePerSubGrid(SudokuGridCalk sudokuGridCalk, SubGrid subGrid, int subGridIndex, int number) {
       List<Integer> squareIndexWithThisPossibleNumber = findPossiblePositionForNumber(subGrid, number);
-      cleanLinkedSquare(subGrid, squareIndexWithThisPossibleNumber);
+      cleanLinkedSquare(subGrid, squareIndexWithThisPossibleNumber, number);
       if (squareIndexWithThisPossibleNumber.size() == 2) {
          int index1 = squareIndexWithThisPossibleNumber.get(0);
          int index2 = squareIndexWithThisPossibleNumber.get(1);
@@ -39,10 +39,13 @@ public class NumberMaybePresentRule extends CalkRule {
       }
    }
 
-   private void cleanLinkedSquare(SubGrid subGrid, List<Integer> squareIndexWithThisPossibleNumber) {
+   private void cleanLinkedSquare(SubGrid subGrid, List<Integer> squareIndexWithThisPossibleNumber, int currentNumber) {
       Map<Pair<Integer, Integer>, Integer> possibleDoubles = new HashMap<>();
 
-      for (int number = 1; number <= 8; number++) {
+      for (int number = 1; number <= 9; number++) {
+         if (number == currentNumber) {
+            continue;
+         }
          List<Integer> possiblePositions = subGrid.getPossiblePositions(number);
          if (possiblePositions.size() == 2) {
             Pair<Integer, Integer> pair = new Pair<>(possiblePositions.get(0), possiblePositions.get(1));

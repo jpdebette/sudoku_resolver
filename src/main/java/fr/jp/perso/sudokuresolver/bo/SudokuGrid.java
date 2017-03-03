@@ -56,4 +56,18 @@ public class SudokuGrid<T extends SubGrid> {
       }
       System.out.println("|");
    }
+
+   @Override
+   public boolean equals(Object obj) {
+      if (obj == null || !(obj instanceof SudokuGrid)) {
+         return false;
+      }
+      SudokuGrid sudokuGridObj = (SudokuGrid) obj;
+      for (int index = 0; index <= 8; index++) {
+         if (!this.subGrids.get(index).equals(sudokuGridObj.subGrids.get(index))) {
+            return false;
+         }
+      }
+      return true;
+   }
 }

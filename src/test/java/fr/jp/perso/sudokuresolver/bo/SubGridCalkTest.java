@@ -8,7 +8,7 @@ public class SubGridCalkTest {
 
    @Test
    public void hasToSetUnavailableASubGrid() {
-      SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createSudokuGridCalk();
+      SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createEmptySudokuGridCalk();
       SubGridCalk emptySubGridCalk = new SubGridCalk(0, new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0});
       SubGridCalk fullSubGridCalk = new SubGridCalk(0, new int[]{8, 8, 8, 8, 8, 8, 8, 8, 8});
 

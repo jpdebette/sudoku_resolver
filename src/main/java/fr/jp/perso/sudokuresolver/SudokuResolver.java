@@ -5,7 +5,7 @@ import fr.jp.perso.sudokuresolver.bo.SubGridCalk;
 import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;
 import fr.jp.perso.sudokuresolver.calkrules.CalkRule;
-import fr.jp.perso.sudokuresolver.calkrules.NumberMaybePresentRule;
+import fr.jp.perso.sudokuresolver.calkrules.DoubleNumberMaybePresentRule;
 import fr.jp.perso.sudokuresolver.calkrules.NumberPresentRule;
 import fr.jp.perso.sudokuresolver.calkrules.OccupiedPositionRule;
 import fr.jp.perso.sudokuresolver.utils.SudokuGridFactory;
@@ -18,8 +18,8 @@ public class SudokuResolver {
    private CalkRule firstRule;
 
    public SudokuResolver() {
-      NumberMaybePresentRule numberMaybePresentRule = new NumberMaybePresentRule(null);
-      NumberPresentRule numberPresentRule = new NumberPresentRule(numberMaybePresentRule);
+      DoubleNumberMaybePresentRule doubleNumberMaybePresentRule = new DoubleNumberMaybePresentRule(null);
+      NumberPresentRule numberPresentRule = new NumberPresentRule(doubleNumberMaybePresentRule);
       OccupiedPositionRule occupiedPositionRule = new OccupiedPositionRule(numberPresentRule);
 
       firstRule = occupiedPositionRule;
@@ -79,7 +79,7 @@ public class SudokuResolver {
    }
 
    private SudokuGridCalk createCalk(SudokuGrid sudokuGrid, int number) {
-      SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createSudokuGridCalk();
+      SudokuGridCalk sudokuGridCalk = SudokuGridFactory.createEmptySudokuGridCalk();
 
       firstRule.applyRule(sudokuGrid, sudokuGridCalk, number);
 
