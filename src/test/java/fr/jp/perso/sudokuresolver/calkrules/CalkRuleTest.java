@@ -13,7 +13,7 @@ public class CalkRuleTest {
 
       CalkRule firstCalkRule = Mockito.spy(new CalkRule(nextCalkRule) {
          @Override
-         void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber) {
+         protected void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber) {
 
          }
       });

@@ -1,8 +1,9 @@
-package fr.jp.perso.sudokuresolver.calkrules;
+package fr.jp.perso.sudokuresolver.calkrules.numbermaybepresentrules;
 
 import fr.jp.perso.sudokuresolver.bo.SubGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;
+import fr.jp.perso.sudokuresolver.calkrules.CalkRule;
 import fr.jp.perso.sudokuresolver.utils.SudokuIndexResolver;
 import javafx.util.Pair;
 
@@ -15,7 +16,7 @@ public class DoubleNumberMaybePresentRule extends CalkRule {
    }
 
    @Override
-   void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int number) {
+   protected void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int number) {
       for (int subGridIndex = 0; subGridIndex <= 8; subGridIndex++) {
          applyRulePerSubGrid(sudokuGridCalk, sudokuGrid.getSubGrid(subGridIndex), subGridIndex, number);
       }

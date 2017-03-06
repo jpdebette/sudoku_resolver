@@ -5,7 +5,7 @@ import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;
 
 public abstract class CalkRule {
 
-   protected CalkRule nextRule;
+   private CalkRule nextRule;
 
    public CalkRule(CalkRule nextRule) {
       this.nextRule = nextRule;
@@ -18,5 +18,5 @@ public abstract class CalkRule {
       }
    }
 
-   abstract void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber);
+   protected abstract void apply(SudokuGrid sudokuGrid, SudokuGridCalk sudokuGridCalk, int currentNumber);
 }

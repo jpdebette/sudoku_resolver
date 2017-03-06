@@ -5,9 +5,10 @@ import fr.jp.perso.sudokuresolver.bo.SubGridCalk;
 import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;
 import fr.jp.perso.sudokuresolver.calkrules.CalkRule;
-import fr.jp.perso.sudokuresolver.calkrules.DoubleNumberMaybePresentRule;
 import fr.jp.perso.sudokuresolver.calkrules.NumberPresentRule;
 import fr.jp.perso.sudokuresolver.calkrules.OccupiedPositionRule;
+import fr.jp.perso.sudokuresolver.calkrules.numbermaybepresentrules.DoubleNumberMaybePresentRule;
+import fr.jp.perso.sudokuresolver.calkrules.numbermaybepresentrules.TripleNumberMaybePresentRule;
 import fr.jp.perso.sudokuresolver.utils.SudokuGridFactory;
 import fr.jp.perso.sudokuresolver.utils.SudokuValidator;
 
@@ -18,7 +19,9 @@ public class SudokuResolver {
    private CalkRule firstRule;
 
    public SudokuResolver() {
-      DoubleNumberMaybePresentRule doubleNumberMaybePresentRule = new DoubleNumberMaybePresentRule(null);
+      TripleNumberMaybePresentRule tripleNumberMaybePresentRule = new TripleNumberMaybePresentRule(null);
+      DoubleNumberMaybePresentRule doubleNumberMaybePresentRule = new DoubleNumberMaybePresentRule(tripleNumberMaybePresentRule);
+      /*NumberMaybePresentRules numberMaybePresentRules = new NumberMaybePresentRules(null);*/
       NumberPresentRule numberPresentRule = new NumberPresentRule(doubleNumberMaybePresentRule);
       OccupiedPositionRule occupiedPositionRule = new OccupiedPositionRule(numberPresentRule);
 

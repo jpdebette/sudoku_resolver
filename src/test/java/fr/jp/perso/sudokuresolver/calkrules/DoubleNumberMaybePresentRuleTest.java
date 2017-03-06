@@ -2,6 +2,7 @@ package fr.jp.perso.sudokuresolver.calkrules;
 
 import fr.jp.perso.sudokuresolver.bo.SudokuGrid;
 import fr.jp.perso.sudokuresolver.bo.SudokuGridCalk;
+import fr.jp.perso.sudokuresolver.calkrules.numbermaybepresentrules.DoubleNumberMaybePresentRule;
 import fr.jp.perso.sudokuresolver.utils.SudokuGridFactory;
 import org.junit.Assert;
 import org.junit.Test;

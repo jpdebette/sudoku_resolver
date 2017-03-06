@@ -161,6 +161,24 @@ public class SudokuGridFactory {
       return createNewSudoku(subGrids);
    }
 
+   public static SudokuGrid createHardSudokuGrid2() {
+      int[][] subGrids = new int[9][];
+
+      subGrids[0] = new int[]{8, 0, 0, 0, 0, 0, 5, 0, 4};
+      subGrids[1] = new int[]{0, 1, 0, 0, 4, 0, 0, 0, 6};
+      subGrids[2] = new int[]{0, 0, 0, 6, 0, 8, 1, 0, 7};
+
+      subGrids[3] = new int[]{0, 0, 1, 0, 0, 6, 0, 9, 3};
+      subGrids[4] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+      subGrids[5] = new int[]{9, 4, 0, 2, 0, 0, 8, 0, 0};
+
+      subGrids[6] = new int[]{6, 0, 2, 7, 0, 1, 0, 0, 0};
+      subGrids[7] = new int[]{4, 0, 0, 0, 5, 0, 0, 1, 0};
+      subGrids[8] = new int[]{1, 0, 9, 0, 0, 0, 0, 0, 8};
+
+      return createNewSudoku(subGrids);
+   }
+
    public static SudokuGrid  createExpertSudokuGrid() {
       int[][] subGrids = new int[9][];
 
@@ -175,6 +193,24 @@ public class SudokuGridFactory {
       subGrids[6] = new int[]{0, 3, 0, 4, 0, 0, 0, 2, 0};
       subGrids[7] = new int[]{5, 0, 0, 0, 0, 3, 9, 0, 0};
       subGrids[8] = new int[]{0, 4, 0, 0, 0, 5, 0, 0, 0};
+
+      return createNewSudoku(subGrids);
+   }
+
+   public static SudokuGrid  createExpertSudokuGrid2() {
+      int[][] subGrids = new int[9][];
+
+      subGrids[0] = new int[]{0, 0, 0, 3, 2, 0, 0, 8, 0};
+      subGrids[1] = new int[]{0, 0, 0, 1, 6, 7, 0, 0, 0};
+      subGrids[2] = new int[]{0, 0, 0, 0, 0, 0, 2, 9, 0};
+
+      subGrids[3] = new int[]{1, 9, 0, 0, 0, 0, 7, 0, 0};
+      subGrids[4] = new int[]{5, 4, 0, 0, 0, 0, 0, 1, 9};
+      subGrids[5] = new int[]{0, 0, 6, 0, 0, 0, 0, 4, 3};
+
+      subGrids[6] = new int[]{0, 1, 8, 0, 0, 0, 0, 0, 0};
+      subGrids[7] = new int[]{0, 0, 0, 5, 3, 1, 0, 0, 0};
+      subGrids[8] = new int[]{0, 3, 0, 0, 9, 6, 0, 0, 0};
 
       return createNewSudoku(subGrids);
    }
